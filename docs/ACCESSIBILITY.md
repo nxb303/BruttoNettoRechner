@@ -8,7 +8,7 @@ Stand dieser Dokumentation: 01.10.2026. Die Erklärung für Besucher steht in de
 ## Umgesetzte Maßnahmen
 
 - Semantisches HTML5: genau eine `h1`, logische Überschriftenhierarchie, Landmarks (`header`, `main`, `footer`,
-  `nav` für Sprachwahl und Rechtliches), Skip-Link, `lang` und `dir` je Seite, Fachbegriffe in englischen Texten mit `lang="de"`.
+  `nav` für Sprachwahl und Rechtliches), Skip-Link, `lang` und `dir` je Seite, Deutsche Fachbegriffe in den englischen und vietnamesischen Texten mit `lang="de"`.
 - Formular: `fieldset`/`legend` für Gruppen, sichtbare Labels, Hinweise per `aria-describedby`, Fehlertext je Feld
   (`aria-invalid`), Fehlerzusammenfassung (`role="alert"`) mit Links zu den Feldern und Fokus auf die
   Zusammenfassung (3.3.1, 3.3.3), abhängige Felder per `hidden`/`disabled`, `inputmode="decimal"` ohne Tippfehler-Sperren.
@@ -25,7 +25,7 @@ Stand dieser Dokumentation: 01.10.2026. Die Erklärung für Besucher steht in de
 
 | Prüfung | Werkzeug | Ergebnis |
 |---|---|---|
-| Automatisiert (wcag2a, wcag2aa, wcag2aaa, wcag21a, wcag21aa, wcag22aa; inkl. `color-contrast-enhanced`) | axe-core in `test/e2e/a11y.spec.js` | 0 Verstöße: de/en × 375/1280 px × hell/dunkel × Leer-, Ergebnis-, Fehler-, PKV-/Faktor-Zustand und Rechtsseiten |
+| Automatisiert (wcag2a, wcag2aa, wcag2aaa, wcag21a, wcag21aa, wcag22aa; inkl. `color-contrast-enhanced`) | axe-core in `test/e2e/a11y.spec.js` | 0 Verstöße: de/en/vi × 375/1280 px × hell/dunkel × Leer-, Ergebnis-, Fehler-, PKV-/Faktor-Zustand und Rechtsseiten |
 | Tastatur | `test/e2e/app.spec.js` | Tab-Reihenfolge, Enter berechnet, `details` per Enter/Leertaste, Radiogruppen per Pfeiltasten |
 | Fokus | E2E | Fokusrahmen ≥ 3 px |
 | Reflow (1.4.10) | E2E bei 320 px | kein horizontales Scrollen (leer, Ergebnis, alle Rechenwege offen) |

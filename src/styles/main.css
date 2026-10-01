@@ -168,6 +168,12 @@ a:hover {
   gap: 0.75rem 1.5rem;
 }
 
+/* Der Titelblock darf umbrechen, damit die Sprachwahl bei langen Titeln rechts oben bleibt. */
+.header-inner > div {
+  flex: 1 1 20rem;
+  min-width: 0;
+}
+
 .lead {
   max-width: 42rem;
   margin: 0;
@@ -186,6 +192,7 @@ a:hover {
 
 .lang-nav {
   display: flex;
+  flex-wrap: wrap;
   gap: 0.25rem;
 }
 
@@ -200,6 +207,13 @@ a:hover {
   color: var(--text);
   text-decoration: none;
   font-weight: 600;
+  white-space: nowrap;
+}
+
+@media (max-width: 26rem) {
+  .lang-nav a {
+    padding: 0 0.65rem;
+  }
 }
 
 .lang-nav a[aria-current] {

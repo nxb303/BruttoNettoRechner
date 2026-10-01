@@ -10,7 +10,7 @@ externe Requests. Nach der Berechnung zeigt die Seite zu jedem Posten den
   amtlichen XML-Pseudocode erzeugt (keine Handportierung, keine Gleitkommazahlen).
 - Sozialversicherung (regulär, Übergangsbereich/Midijob, Minijob, private Krankenversicherung mit
   Arbeitgeberzuschuss) aus den gesetzlichen Werten 2026 (siehe [`docs/DATA-SOURCES.md`](docs/DATA-SOURCES.md)).
-- Deutsch (Standard) und Englisch; weitere Sprachen mit einer Wörterbuchdatei
+- Deutsch (Standard), Englisch und Vietnamesisch (`/vi/`); weitere Sprachen mit einer Wörterbuchdatei
   ([`docs/ADDING-A-LANGUAGE.md`](docs/ADDING-A-LANGUAGE.md)).
 - Barrierefrei nach WCAG 2.2 AA, Textkontraste nach AAA (≥ 7 : 1) ([`docs/ACCESSIBILITY.md`](docs/ACCESSIBILITY.md)), responsiv, Hell-/Dunkelmodus, Druckansicht.
 - Klein und schnell: Startseite ≈ 33 KB gzip (HTML + ein JavaScript-Modul + Favicon), keine Laufzeit-Abhängigkeiten.
@@ -23,6 +23,7 @@ Ergebniszustand mit aufgeklapptem Rechenweg (Referenzfall 5.000 €, Steuerklass
 |---|---|
 | ![Deutsch, Desktop](docs/screenshots/de-desktop-result.png) | ![Deutsch, mobil](docs/screenshots/de-mobile-result.png) |
 | ![English, desktop](docs/screenshots/en-desktop-result.png) | ![English, mobile](docs/screenshots/en-mobile-result.png) |
+| ![Tiếng Việt, desktop](docs/screenshots/vi-desktop-result.png) | ![Tiếng Việt, mobile](docs/screenshots/vi-mobile-result.png) |
 
 Rechenweg mit Quellen: [Desktop de](docs/screenshots/de-desktop-explain.png),
 [Desktop en](docs/screenshots/en-desktop-explain.png), [mobil de](docs/screenshots/de-mobile-explain.png),

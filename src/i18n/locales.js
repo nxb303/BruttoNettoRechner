@@ -11,6 +11,7 @@
 export const LOCALES = Object.freeze([
   { code: 'de', name: 'Deutsch', intl: 'de-DE', dir: 'ltr', path: '/', default: true },
   { code: 'en', name: 'English', intl: 'en-GB', dir: 'ltr', path: '/en/' },
+  { code: 'vi', name: 'Tiếng Việt', intl: 'vi-VN', dir: 'ltr', path: '/vi/' },
 ]);
 
 export const DEFAULT_LOCALE = LOCALES.find((l) => l.default);

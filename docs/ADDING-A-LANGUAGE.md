@@ -7,7 +7,8 @@ Beispiel: Französisch (`fr`).
    Texte übersetzen. Schlüssel und Platzhalter (`{name}`) bleiben unverändert; ein Platzhalter darf in der
    Übersetzung an anderer Stelle stehen, muss aber vorkommen.
    - Zahlen, Beträge, Prozentwerte und Daten werden über `Intl` formatiert (`{amount}` usw.) – nicht selbst formatieren.
-   - Pluralformen (`{ one, other }`): `other` ist Pflicht, weitere Formen nach den `Intl.PluralRules`-Kategorien der Sprache.
+   - Pluralformen (`{ one, other }`): `other` ist Pflicht, weitere Formen nach den `Intl.PluralRules`-Kategorien der Sprache
+     (Vietnamesisch kennt nur `other`, siehe `src/i18n/vi.js`).
    - Deutsche Fachbegriffe in Klammern ergänzen und mit `[de:Begriff]` markieren; die Seite zeichnet sie
      dann als `lang="de"` aus (Screenreader sprechen sie deutsch).
    - Seiten-Adressen: `page.legal.slug` und `page.privacy.slug` bestimmen die Pfade der Rechtsseiten
@@ -25,7 +26,8 @@ Beispiel: Französisch (`fr`).
      formatierbar sind.
    - Der Build schlägt bei fehlenden Schlüsseln oder Parametern fehl.
 4. **Prüfen:** Seiten unter `/fr/` im Browser ansehen (Textlängen, Umbrüche), `npm run test:e2e`
-   (die E2E-Tests laufen für de/en; für die neue Sprache einen Eintrag in `test/e2e/helpers.js` ergänzen).
+   (die E2E-Tests laufen für alle Sprachen aus `test/e2e/helpers.js`; für die neue Sprache dort einen Eintrag mit
+   Name, Beispielwerten und Rechtsseiten-Pfaden ergänzen – Tab-Reihenfolge und Sprachwechsel-Test passen sich selbst an).
 
 Fehlende Schlüssel fallen beim Bauen auf Deutsch zurück (die Bundles enthalten nur das eigene Wörterbuch);
 die Tests sorgen dafür, dass das nie nötig wird. Statische Seitentexte (`form.*`, `legal.*`, …) stehen nur im

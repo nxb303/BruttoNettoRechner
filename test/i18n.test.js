@@ -135,6 +135,30 @@ test('Zahlenformate: Euro, Prozent, Zahl, Datum – de und en', () => {
   assert.equal(en.t('result.sources.metaNoDate', { publisher: 'BMF', accessed: { date: '2026-10-01' } }), 'BMF, retrieved on 1 October 2026');
 });
 
+test('Vietnamesisch: Zahlenformate, Eingabe-Parser, Plural nur „other“ und Sprach-Markup', () => {
+  const vi = createI18n({ code: 'vi', intl: 'vi-VN', dictionary: dictionaries.vi, strict: true });
+  const nbsp = (s) => s.replace(/[\u00a0\u202f]/g, ' ');
+  assert.equal(nbsp(vi.formatEur(305968)), '3.059,68 €');
+  assert.equal(vi.formatNumber(0.912, 3), '0,912');
+  assert.equal(vi.t('result.sources.metaNoDate', { publisher: 'BMF', accessed: { date: '2026-10-01' } }), 'BMF, truy cập ngày 1 tháng 10, 2026');
+  // Dezimalkomma und Tausenderpunkt wie im Deutschen
+  assert.equal(vi.parseDecimal('3.500,50'), 3500.5);
+  assert.equal(vi.parseDecimal('5.000'), 5000);
+  assert.equal(vi.parseDecimal('4000,5 €'), 4000.5);
+  assert.ok(Number.isNaN(vi.parseDecimal('abc')));
+  // Nur die Pluralkategorie „other“ – für jede Anzahl derselbe Text
+  const params = { perChild: { pct: 0.25 }, reduction: { pct: 0.25 } };
+  assert.equal(vi.t('explain.care.step.reduction', { ...params, count: 1 }), vi.t('explain.care.step.reduction', { ...params, count: 3 }).replace('3 con', '1 con'));
+  assert.equal(vi.t('result.sources.cite', { count: 1 }), 'Nguồn:');
+  // Deutsche Fachbegriffe sind ausgezeichnet, der Klartext enthält sie in Klammern
+  assert.equal(vi.t('item.incomeTax'), 'Thuế tiền lương (Lohnsteuer)');
+  assert.equal(vi.tr('item.incomeTax'), 'Thuế tiền lương ([de:Lohnsteuer])');
+  assert.equal(vi.t('state.NW'), 'Nordrhein-Westfalen');
+  // Adressen der Rechtsseiten sind reine ASCII-Pfade
+  assert.match(vi.t('page.legal.slug'), /^[a-z0-9-]+$/);
+  assert.match(vi.t('page.privacy.slug'), /^[a-z0-9-]+$/);
+});
+
 test('Pluralformen und Sprach-Markup', () => {
   const de = createI18n({ code: 'de', intl: 'de-DE', dictionary: dictionaries.de });
   const en = createI18n({ code: 'en', intl: 'en-GB', dictionary: dictionaries.en });

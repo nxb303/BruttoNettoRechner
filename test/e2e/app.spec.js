@@ -144,7 +144,7 @@ for (const locale of LOCALES) {
         await expect(page.locator('#employment')).toContainText(locale.minijobLabel);
         await expect(page.locator('#warnings li').first()).toBeVisible();
         await page.locator('#minijobRvExempt').check();
-        await expect(page.locator('#net-month')).toHaveText(locale.code === 'de' ? '500,00 €' : '€500.00');
+        await expect(page.locator('#net-month')).toHaveText(locale.minijobNet);
 
         await page.locator('#gross').fill('1000');
         await expect(page.locator('#employment')).not.toContainText(locale.minijobLabel);
@@ -154,7 +154,7 @@ for (const locale of LOCALES) {
         await page.locator('input[name="kv"][value="p"]').check();
         await page.locator('#kvPremium').fill('600');
         await page.locator('#pvPremium').fill('120');
-        await expect(page.locator('#result-rows')).toContainText(locale.code === 'de' ? 'Arbeitgeberzuschuss' : 'Employer subsidy');
+        await expect(page.locator('#result-rows')).toContainText(locale.subsidyLabel);
         await expect(page.locator('#net-month')).toBeVisible();
       });
 
@@ -196,15 +196,17 @@ for (const locale of LOCALES) {
       });
 
       test('Sprachwechsel behält die Eingaben', async ({ page }) => {
-        await page.goto(`${locale.path}${REFERENCE_QUERY}`);
-        await expect(page.locator('#net-month')).toHaveText(locale.net);
-        const switcher = page.locator('.lang-nav a', { hasText: locale.otherLanguage });
-        await expect(switcher).toHaveAttribute('href', new RegExp(`${REFERENCE_QUERY.replace(/[?&=.]/g, '\\$&')}$`));
-        await switcher.click();
-        const other = LOCALES.find((l) => l.code !== locale.code);
-        await expect(page).toHaveURL(new RegExp(`${other.path}\\?b=5000`));
-        await expect(page.locator('#net-month')).toHaveText(other.net);
-        await expect(page.locator('html')).toHaveAttribute('lang', other.code);
+        for (const other of LOCALES.filter((l) => l.code !== locale.code)) {
+          await page.goto(`${locale.path}${REFERENCE_QUERY}`);
+          await expect(page.locator('#net-month')).toHaveText(locale.net);
+          await expect(page.locator('.lang-nav a')).toHaveCount(LOCALES.length);
+          const switcher = page.locator(`.lang-nav a[hreflang="${other.code}"]`);
+          await expect(switcher).toHaveAttribute('href', new RegExp(`${REFERENCE_QUERY.replace(/[?&=.]/g, '\\$&')}$`));
+          await switcher.click();
+          await expect(page).toHaveURL(new RegExp(`${other.path}\\?b=5000`));
+          await expect(page.locator('#net-month')).toHaveText(other.net);
+          await expect(page.locator('html')).toHaveAttribute('lang', other.code);
+        }
       });
     });
   }
@@ -219,12 +221,14 @@ for (const locale of LOCALES) {
         });
       const order = [];
       await page.keyboard.press('Tab');
-      for (let i = 0; i < 16; i++) {
+      const languageNames = LOCALES.map((l) => l.name);
+      const head = 1 + languageNames.length; // Skip-Link und je ein Link pro Sprache
+      for (let i = 0; i < head + 13; i++) {
         order.push(await describe());
         await page.keyboard.press('Tab');
       }
-      expect(order.slice(0, 3)).toEqual([locale.skip, 'Deutsch', 'English']);
-      expect(order.slice(3)).toEqual([
+      expect(order.slice(0, head)).toEqual([locale.skip, ...languageNames]);
+      expect(order.slice(head)).toEqual([
         'gross', 'name:p', 'taxClass', 'state', 'name:kist', 'childAllowances', 'name:kv',
         'additionalRate', 'name:k', 'name:a23', expect.any(String), locale.submit, 'reset',
       ]);
@@ -279,7 +283,7 @@ for (const locale of LOCALES) {
   test.describe(`${locale.code} Seiten`, () => {
     test('Rechtsseiten und Barrierefreiheitserklärung erreichbar und mit Platzhalterhinweis', async ({ page }) => {
       await page.goto(locale.path);
-      await page.locator('.site-footer a', { hasText: /Impressum|Legal notice/ }).click();
+      await page.locator('.site-footer a', { hasText: locale.legalLinkName }).click();
       await expect(page).toHaveURL(locale.legalPath);
       await expect(page.locator('h1')).toBeVisible();
       await expect(page.locator('main')).toContainText('[');
@@ -295,7 +299,7 @@ for (const locale of LOCALES) {
       await page.goto(locale.path);
       await expect(page.locator('html')).toHaveAttribute('lang', locale.code);
       await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', locale.path);
-      expect(await page.locator('link[rel="alternate"][hreflang]').count()).toBe(3);
+      expect(await page.locator('link[rel="alternate"][hreflang]').count()).toBe(LOCALES.length + 1); // alle Sprachen plus x-default
       const csp = await page.locator('meta[http-equiv="Content-Security-Policy"]').getAttribute('content');
       expect(csp).toMatch(/default-src 'none'/);
       expect(csp).toMatch(/script-src 'self'/);

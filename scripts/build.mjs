@@ -79,6 +79,7 @@ async function buildScript(locale, dictionary) {
     format: 'esm',
     target: 'es2020',
     legalComments: 'none',
+    charset: 'utf8', // Umlaute und Diakritika nicht als \uXXXX maskieren (Module sind immer UTF-8)
     write: false,
     outdir: join(DIST, 'assets'),
     plugins: [localePlugin(locale, dictionary)],

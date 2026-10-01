@@ -177,3 +177,11 @@ test('PAP-typische Rechenkette: Tarifzone 2 (Y/RW-Schritte) exakt', () => {
   assert.equal(rw.toString(), '9513.4612181310000');
   assert.equal(rw.add(D(1034.87)).setScale(0, ROUND_DOWN).toString(), '10548');
 });
+
+test('fromCents: Cent → Euro mit zwei Nachkommastellen', () => {
+  assert.equal(BigDecimal.fromCents(305968).toString(), '3059.68');
+  assert.equal(BigDecimal.fromCents(-5).toString(), '-0.05');
+  assert.equal(BigDecimal.fromCents(0).toString(), '0.00');
+  assert.equal(BigDecimal.fromCents(1234).toCents(), 1234);
+  assert.throws(() => BigDecimal.fromCents(1.5), RangeError);
+});

@@ -188,6 +188,12 @@ export class BigDecimal {
     return this.compareTo(o) >= 0 ? this : o;
   }
 
+  /** Ganze Cent (Number) → Euro-Betrag mit zwei Nachkommastellen. */
+  static fromCents(cents) {
+    if (!Number.isSafeInteger(cents)) throw new RangeError(`Not an integer cent amount: ${cents}`);
+    return new BigDecimal(BigInt(cents), 2);
+  }
+
   /** Ganzzahlanteil (Richtung 0 abgeschnitten) als Number. */
   longValue() {
     return Number(this.unscaled / pow10(this.scale));

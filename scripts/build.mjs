@@ -149,7 +149,7 @@ function headHtml(ctx, { cssHash, css, pagePath, alternates }) {
     `<meta http-equiv="Content-Security-Policy" content="${escapeHtml(csp)}">`,
     '<meta name="referrer" content="no-referrer">',
     '<meta name="color-scheme" content="light dark">',
-    '<meta name="theme-color" content="#0a6575" media="(prefers-color-scheme: light)">',
+    '<meta name="theme-color" content="#075563" media="(prefers-color-scheme: light)">',
     '<meta name="theme-color" content="#0e181d" media="(prefers-color-scheme: dark)">',
     `<link rel="icon" href="${BASE}favicon.svg" type="image/svg+xml">`,
     `<link rel="canonical" href="${escapeHtml(absolute(pagePath))}">`,
@@ -191,7 +191,7 @@ ${head}
 </html>
 `;
 
-const FAVICON = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#0a6575"/><path d="M14 44h36M18 44V30m10 14V20m10 24V26m10 18V14" stroke="#fff" stroke-width="5" stroke-linecap="round" fill="none"/></svg>
+const FAVICON = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#075563"/><path d="M14 44h36M18 44V30m10 14V20m10 24V26m10 18V14" stroke="#fff" stroke-width="5" stroke-linecap="round" fill="none"/></svg>
 `;
 
 export async function build() {

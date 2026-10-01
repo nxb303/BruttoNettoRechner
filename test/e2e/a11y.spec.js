@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 import { LOCALES, VIEWPORTS, REFERENCE_QUERY } from './helpers.js';
 
-const TAGS = ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'];
+const TAGS = ['wcag2a', 'wcag2aa', 'wcag2aaa', 'wcag21a', 'wcag21aa', 'wcag22aa'];
 const SCHEMES = ['light', 'dark'];
 
 async function expectNoViolations(page) {

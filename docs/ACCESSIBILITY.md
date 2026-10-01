@@ -1,6 +1,7 @@
 # Barrierefreiheit
 
-**Konformitätsziel:** WCAG 2.2, Stufe AA (relevant auch für das Barrierefreiheitsstärkungsgesetz, BFSG).
+**Konformitätsziel:** WCAG 2.2, Stufe AA (relevant auch für das Barrierefreiheitsstärkungsgesetz, BFSG);
+zusätzlich erfüllt: erhöhter Kontrast nach Stufe AAA (1.4.6, ≥ 7 : 1).
 Stand dieser Dokumentation: 01.10.2026. Die Erklärung für Besucher steht in der Datenschutzseite
 (Abschnitt „Erklärung zur Barrierefreiheit“, `/datenschutz/#a11y` bzw. `/en/privacy/#a11y`) und ist im Footer verlinkt.
 
@@ -16,7 +17,7 @@ Stand dieser Dokumentation: 01.10.2026. Die Erklärung für Besucher steht in de
   unsichtbares Wort „abzüglich“/„zuzüglich“, externe Links mit unsichtbarem Hinweis „öffnet externe Website in neuem Tab“.
 - Bedienung: alles per Tastatur erreichbar, keine Tastaturfallen, sichtbarer Fokus (3 px, mit Abstand), `details`/`summary` nativ,
   Zielgrößen ≥ 44 × 44 px (übertrifft 2.5.8).
-- Darstellung: Kontraste ≥ 4,5 : 1 (Text) und ≥ 3 : 1 (Bedienelemente, Grafik), Hell-/Dunkelmodus per
+- Darstellung: Textkontraste ≥ 7 : 1 (AAA, 1.4.6) in Hell- und Dunkelmodus, ≥ 3 : 1 für Bedienelemente und Grafik, Hell-/Dunkelmodus per
   `prefers-color-scheme`, `forced-colors`, `prefers-reduced-motion`, Reflow bis 320 px (Ergebnistabellen stapeln sich
   auf schmalen Bildschirmen), Textvergrößerung bis 200 %, Zoom nicht gesperrt, Druckstil mit aufgeklappten Rechenwegen.
 
@@ -24,7 +25,7 @@ Stand dieser Dokumentation: 01.10.2026. Die Erklärung für Besucher steht in de
 
 | Prüfung | Werkzeug | Ergebnis |
 |---|---|---|
-| Automatisiert (wcag2a, wcag2aa, wcag21a, wcag21aa, wcag22aa) | axe-core in `test/e2e/a11y.spec.js` | 0 Verstöße: de/en × 375/1280 px × hell/dunkel × Leer-, Ergebnis-, Fehler-, PKV-/Faktor-Zustand und Rechtsseiten |
+| Automatisiert (wcag2a, wcag2aa, wcag2aaa, wcag21a, wcag21aa, wcag22aa; inkl. `color-contrast-enhanced`) | axe-core in `test/e2e/a11y.spec.js` | 0 Verstöße: de/en × 375/1280 px × hell/dunkel × Leer-, Ergebnis-, Fehler-, PKV-/Faktor-Zustand und Rechtsseiten |
 | Tastatur | `test/e2e/app.spec.js` | Tab-Reihenfolge, Enter berechnet, `details` per Enter/Leertaste, Radiogruppen per Pfeiltasten |
 | Fokus | E2E | Fokusrahmen ≥ 3 px |
 | Reflow (1.4.10) | E2E bei 320 px | kein horizontales Scrollen (leer, Ergebnis, alle Rechenwege offen) |

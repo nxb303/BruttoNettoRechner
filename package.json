@@ -1,0 +1,28 @@
+{
+  "name": "brutto-netto-rechner",
+  "version": "0.1.0",
+  "description": "Brutto-Netto-Rechner für Deutschland (Rechtsstand 2026) – läuft komplett im Browser",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "gen:pap": "node scripts/generate-pap.mjs",
+    "fetch:bmf": "node scripts/fetch-bmf-reference.mjs",
+    "test": "node --test \"test/*.test.js\"",
+    "build": "node scripts/build.mjs",
+    "check": "node scripts/validate-html.mjs && node scripts/check-budget.mjs",
+    "test:e2e": "playwright test",
+    "serve": "node scripts/serve.mjs"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.13.0",
+    "@playwright/test": "1.56.1",
+    "esbuild": "0.28.2",
+    "html-validate": "11.16.1"
+  },
+  "overrides": {
+    "playwright-core": "1.56.1"
+  }
+}

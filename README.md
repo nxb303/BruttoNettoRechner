@@ -12,7 +12,7 @@ externe Requests. Nach der Berechnung zeigt die Seite zu jedem Posten den
   Arbeitgeberzuschuss) aus den gesetzlichen Werten 2026 (siehe [`docs/DATA-SOURCES.md`](docs/DATA-SOURCES.md)).
 - Deutsch (Standard) und Englisch; weitere Sprachen mit einer Wörterbuchdatei
   ([`docs/ADDING-A-LANGUAGE.md`](docs/ADDING-A-LANGUAGE.md)).
-- Barrierefrei nach WCAG 2.2 AA ([`docs/ACCESSIBILITY.md`](docs/ACCESSIBILITY.md)), responsiv, Hell-/Dunkelmodus, Druckansicht.
+- Barrierefrei nach WCAG 2.2 AA, Textkontraste nach AAA (≥ 7 : 1) ([`docs/ACCESSIBILITY.md`](docs/ACCESSIBILITY.md)), responsiv, Hell-/Dunkelmodus, Druckansicht.
 - Klein und schnell: Startseite ≈ 33 KB gzip (HTML + ein JavaScript-Modul + Favicon), keine Laufzeit-Abhängigkeiten.
 
 ## Screenshots

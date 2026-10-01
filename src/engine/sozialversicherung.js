@@ -150,7 +150,7 @@ function reductionStep(rates) {
   return {
     key: 'explain.care.step.reduction',
     values: {
-      children: rates.pvReductionChildren,
+      count: rates.pvReductionChildren,
       perChild: pct(rates.pvReduction / rates.pvReductionChildren),
       reduction: pct(rates.pvReduction),
     },
@@ -238,7 +238,7 @@ function midijobBranches(ctx, active) {
       steps.push({
         key: 'explain.care.step.reductionMidijob',
         values: {
-          children: rates.pvReductionChildren,
+          count: rates.pvReductionChildren,
           base: eur(beAnCents),
           reduction: pct(rates.pvReduction),
           amount: eur(cents(reduction)),

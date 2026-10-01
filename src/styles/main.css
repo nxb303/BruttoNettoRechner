@@ -133,7 +133,7 @@ a:hover {
 
 .skip-link {
   position: absolute;
-  left: var(--gutter);
+  inset-inline-start: var(--gutter);
   top: -4rem;
   z-index: 10;
   padding: 0.75rem 1rem;
@@ -317,7 +317,7 @@ fieldset {
 }
 
 .group > legend {
-  float: left;
+  float: inline-start;
   width: 100%;
   margin: 0 0 0.75rem;
   padding: 0;
@@ -373,12 +373,13 @@ select:disabled {
 }
 
 .affix-box input {
-  padding-right: 2.25rem;
+  padding-inline-end: 2.25rem;
 }
 
 .affix {
   position: absolute;
-  inset: 0 0.8rem 0 auto;
+  inset-block: 0;
+  inset-inline-end: 0.8rem;
   display: flex;
   align-items: center;
   color: var(--muted);
@@ -422,7 +423,7 @@ select:disabled {
 
 .error-summary ul {
   margin: 0;
-  padding-left: 1.2rem;
+  padding-inline-start: 1.2rem;
 }
 
 .error-summary a {
@@ -447,7 +448,7 @@ select:disabled {
 }
 
 .segmented label + label {
-  border-left: 1px solid var(--border-strong);
+  border-inline-start: 1px solid var(--border-strong);
 }
 
 .segmented input {
@@ -623,12 +624,12 @@ summary {
 
 .seg-taxes {
   background: repeating-linear-gradient(45deg, var(--taxes) 0 5px, var(--surface) 5px 8px);
-  border-left: 2px solid var(--surface);
+  border-inline-start: 2px solid var(--surface);
 }
 
 .seg-social {
   background: radial-gradient(circle, var(--social) 38%, transparent 42%) 0 0 / 7px 7px, var(--surface);
-  border-left: 2px solid var(--surface);
+  border-inline-start: 2px solid var(--surface);
 }
 
 .legend {
@@ -695,7 +696,7 @@ table.results {
 
 table.results caption {
   margin-bottom: 0.4rem;
-  text-align: left;
+  text-align: start;
   font-weight: 700;
 }
 
@@ -703,7 +704,7 @@ table.results th,
 table.results td {
   padding: 0.55rem 0.4rem;
   border-bottom: 1px solid var(--border);
-  text-align: left;
+  text-align: start;
   vertical-align: baseline;
 }
 
@@ -720,7 +721,7 @@ table.results th[scope="row"] {
 }
 
 table.results .num {
-  text-align: right;
+  text-align: end;
   white-space: nowrap;
 }
 
@@ -791,7 +792,7 @@ table.results tr.total td {
   }
 
   table.results td.num {
-    text-align: left;
+    text-align: start;
   }
 
   table.results tr.subtotal {
@@ -842,12 +843,13 @@ table.results tr.total td {
 
 .steps {
   margin: 0;
-  padding: 0.25rem 1rem 0.75rem 2.4rem;
+  padding: 0.25rem 1rem 0.75rem;
+  padding-inline-start: 2.4rem;
 }
 
 .steps li {
   margin-bottom: 0.6rem;
-  padding-left: 0.2rem;
+  padding-inline-start: 0.2rem;
   overflow-wrap: anywhere;
 }
 
@@ -860,12 +862,12 @@ cite {
 }
 
 cite a {
-  margin-right: 0.6rem;
+  margin-inline-end: 0.6rem;
   white-space: nowrap;
 }
 
 .sources {
-  padding-left: 1.2rem;
+  padding-inline-start: 1.2rem;
 }
 
 .sources li {

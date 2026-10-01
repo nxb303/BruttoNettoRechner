@@ -250,7 +250,6 @@ const SUBSIDY = {
   employerHealthRate: 7.3,
   averageAdditionalRate: 2.9,
   employerCareRate: 1.8,
-  saxony: false,
 };
 
 test('PKV-Zuschuss: Hälfte des Beitrags, begrenzt auf 508,59 € (KV) und 104,63 € (PV)', () => {
@@ -267,7 +266,7 @@ test('PKV-Zuschuss: Hälfte des Beitrags, begrenzt auf 508,59 € (KV) und 104,6
 });
 
 test('PKV-Zuschuss Sachsen: Pflege höchstens 75,56 €', () => {
-  const r = privateSubsidy({ ...SUBSIDY, employerCareRate: 1.3, saxony: true, kvPremiumCents: 50000, pvPremiumCents: 30000 });
+  const r = privateSubsidy({ ...SUBSIDY, employerCareRate: 1.3, kvPremiumCents: 50000, pvPremiumCents: 30000 });
   assert.equal(r.care.cap, 7556);
   assert.equal(r.care.result, 7556);
 });

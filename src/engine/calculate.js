@@ -111,7 +111,6 @@ export function calculate(rawInput) {
     subsidy = privateSubsidy({
       kvPremiumCents: toCents(input.health.kvPremium),
       pvPremiumCents: toCents(input.health.pvPremium),
-      saxony: rates.pvSaxony,
       ceilingKvPv: limits.ceilingKvPv,
       employerHealthRate: data.health.employeeRate.value,
       averageAdditionalRate: data.health.averageAdditionalRate.value,

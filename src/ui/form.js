@@ -158,10 +158,9 @@ export function parseForm(raw, i18n, rel) {
     };
   }
 
-  if (!errors.length) {
-    for (const error of validateInput(input)) {
-      if (!errors.some((e) => e.field === (FIELD_IDS[error.field] ?? error.field))) fail(error.field, error.code);
-    }
+  // Wertebereiche auch dann prüfen, wenn einzelne Felder nicht lesbar waren; je Feld zählt der erste Fehler.
+  for (const error of validateInput(input)) {
+    if (!errors.some((e) => e.field === (FIELD_IDS[error.field] ?? error.field))) fail(error.field, error.code);
   }
   return { input: errors.length ? null : input, errors };
 }

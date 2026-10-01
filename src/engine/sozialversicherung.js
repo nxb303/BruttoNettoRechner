@@ -351,7 +351,7 @@ export function calculateSocialInsurance(ctx) {
  * (§ 257 Abs. 2 SGB V, § 61 Abs. 2 SGB XI): Hälfte des Beitrags, höchstens der Betrag,
  * den der Arbeitgeber bei gesetzlicher Versicherung trüge.
  * @param {{
- *   kvPremiumCents: number, pvPremiumCents: number, saxony: boolean,
+ *   kvPremiumCents: number, pvPremiumCents: number,
  *   ceilingKvPv: number, employerHealthRate: number, averageAdditionalRate: number,
  *   employerCareRate: number
  * }} p

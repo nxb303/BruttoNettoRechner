@@ -15,7 +15,8 @@
     "check": "node scripts/validate-html.mjs && node scripts/check-budget.mjs",
     "test:e2e": "playwright test",
     "serve": "node scripts/serve.mjs",
-    "check:sources": "node scripts/check-sources.mjs"
+    "check:sources": "node scripts/check-sources.mjs",
+    "docs:sources": "node scripts/gen-data-sources.mjs"
   },
   "devDependencies": {
     "@axe-core/playwright": "4.13.0",

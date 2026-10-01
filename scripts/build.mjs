@@ -28,7 +28,8 @@ const DIST = join(ROOT, 'dist');
 
 const normalizeBase = (base) => `/${base.replace(/^\/+|\/+$/g, '')}/`.replace(/^\/\/$/, '/');
 const BASE = normalizeBase(process.env.BASE_PATH ?? '/');
-const SITE_URL = process.env.SITE_URL?.replace(/\/+$/, '') ?? '';
+/** Nur der Ursprung (Schema + Host): Der Pfad kommt aus BASE_PATH. */
+const SITE_URL = process.env.SITE_URL ? new URL(process.env.SITE_URL).origin : '';
 
 const escapeHtml = (text) =>
   String(text).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);

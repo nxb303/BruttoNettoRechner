@@ -1,0 +1,2 @@
+vendor/bmf/*.xml -text
+* text=auto eol=lf

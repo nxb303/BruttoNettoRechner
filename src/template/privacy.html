@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="{{lang}}" dir="{{dir}}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{plain:privacy.meta.title}}</title>
+<meta name="description" content="{{plain:privacy.meta.description}}">
+{{head}}
+</head>
+<body>
+<a class="skip-link" href="#main">{{t:nav.skipContent}}</a>
+<header class="site-header">
+  <div class="wrap header-inner">
+    <p class="site-name"><a href="{{homeHref}}">{{t:site.name}}</a></p>
+    <nav class="lang-nav" aria-label="{{plain:nav.language}}">
+      {{languageNav}}
+    </nav>
+  </div>
+</header>
+<main id="main" class="wrap prose">
+  <h1>{{t:privacy.title}}</h1>
+  <p class="notice notice-warning">{{t:privacy.placeholderNotice}}</p>
+  <h2>{{t:privacy.controller.title}}</h2>
+  <p>{{t:privacy.controller.text}}</p>
+  <h2>{{t:privacy.overview.title}}</h2>
+  <p>{{t:privacy.overview.text}}</p>
+  <ul>
+    <li>{{t:privacy.overview.item1}}</li>
+    <li>{{t:privacy.overview.item2}}</li>
+    <li>{{t:privacy.overview.item3}}</li>
+    <li>{{t:privacy.overview.item4}}</li>
+  </ul>
+  <h2>{{t:privacy.hosting.title}}</h2>
+  <p>{{t:privacy.hosting.text}}</p>
+  <h2>{{t:privacy.url.title}}</h2>
+  <p>{{t:privacy.url.text}}</p>
+  <h2>{{t:privacy.links.title}}</h2>
+  <p>{{t:privacy.links.text}}</p>
+  <h2>{{t:privacy.rights.title}}</h2>
+  <p>{{t:privacy.rights.text}}</p>
+  <h2 id="a11y">{{t:a11y.title}}</h2>
+  <p>{{t:a11y.status}}</p>
+  <p>{{t:a11y.measures}}</p>
+  <p>{{t:a11y.limits}}</p>
+  <p>{{t:a11y.feedback}}</p>
+  <p><a href="{{homeHref}}">{{t:nav.back}}</a></p>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <nav aria-label="{{plain:footer.nav}}">
+      <ul class="footer-links">
+        <li><a href="{{homeHref}}">{{t:nav.home}}</a></li>
+        <li><a href="{{legalHref}}">{{t:footer.legal}}</a></li>
+        <li><a href="{{privacyHref}}" aria-current="page">{{t:footer.privacyLink}}</a></li>
+        <li><a href="#a11y">{{t:footer.a11y}}</a></li>
+      </ul>
+    </nav>
+  </div>
+</footer>
+</body>
+</html>

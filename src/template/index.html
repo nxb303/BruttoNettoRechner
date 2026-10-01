@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="{{lang}}" dir="{{dir}}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{plain:meta.title}}</title>
+<meta name="description" content="{{plain:meta.description}}">
+{{head}}
+</head>
+<body>
+<a class="skip-link" href="#calculator">{{t:nav.skip}}</a>
+<header class="site-header">
+  <div class="wrap header-inner">
+    <div>
+      <h1>{{t:site.title}}</h1>
+      <p class="lead">{{t:site.lead}}</p>
+    </div>
+    <nav class="lang-nav" aria-label="{{plain:nav.language}}">
+      {{languageNav}}
+    </nav>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+  <noscript><p class="notice notice-warning">{{t:noscript}}</p></noscript>
+  <div class="layout" id="calculator">
+    <section class="card form-card" aria-labelledby="form-title">
+      <h2 id="form-title">{{t:form.title}}</h2>
+      <form id="calc-form" novalidate autocomplete="off">
+        <div id="error-summary" class="error-summary" role="alert" tabindex="-1" hidden>
+          <h3 id="error-summary-title">{{t:form.errors.title}}</h3>
+          <ul id="error-summary-list"></ul>
+        </div>
+
+        <fieldset class="group">
+          <legend>{{t:form.salary.legend}}</legend>
+          <div class="field" data-field="gross">
+            <label for="gross">{{t:form.gross.label}}</label>
+            <div class="affix-box"><input id="gross" name="b" type="text" inputmode="decimal" autocomplete="off" placeholder="{{plain:form.gross.placeholder}}" aria-describedby="gross-hint gross-error" required><span class="affix" aria-hidden="true">€</span></div>
+            <p class="hint" id="gross-hint">{{t:form.gross.hint}}</p>
+            <p class="error" id="gross-error" hidden></p>
+          </div>
+          <fieldset class="field">
+            <legend>{{t:form.period.legend}}</legend>
+            <div class="segmented">
+              <label><input type="radio" name="p" value="m" checked><span>{{t:form.period.month}}</span></label>
+              <label><input type="radio" name="p" value="y"><span>{{t:form.period.year}}</span></label>
+            </div>
+          </fieldset>
+          {{yearField}}
+          <div class="field" id="minijob-field" hidden>
+            <label class="check"><input type="checkbox" id="minijobRvExempt" name="rvb" value="1"><span>{{t:form.minijob.exempt}}</span></label>
+            <p class="hint">{{t:form.minijob.hint}}</p>
+          </div>
+        </fieldset>
+
+        <fieldset class="group">
+          <legend>{{t:form.tax.legend}}</legend>
+          <div class="field">
+            <label for="taxClass">{{t:form.taxClass.label}}</label>
+            <select id="taxClass" name="stkl">{{taxClassOptions}}</select>
+          </div>
+          <div class="field">
+            <label for="state">{{t:form.state.label}}</label>
+            <select id="state" name="bl">{{stateOptions}}</select>
+          </div>
+          <fieldset class="field">
+            <legend>{{t:form.churchTax.legend}}</legend>
+            <div class="segmented">
+              <label><input type="radio" name="kist" value="1"><span>{{t:form.yes}}</span></label>
+              <label><input type="radio" name="kist" value="0" checked><span>{{t:form.no}}</span></label>
+            </div>
+          </fieldset>
+          <div class="field">
+            <label for="childAllowances">{{t:form.childAllowances.label}}</label>
+            <select id="childAllowances" name="kfb" aria-describedby="kfb-hint kfb-note">{{childAllowanceOptions}}</select>
+            <p class="hint" id="kfb-hint">{{t:form.childAllowances.hint}}</p>
+            <p class="hint" id="kfb-note" hidden>{{t:form.childAllowances.note}}</p>
+          </div>
+        </fieldset>
+
+        <fieldset class="group">
+          <legend>{{t:form.health.legend}}</legend>
+          <fieldset class="field">
+            <legend>{{t:form.health.type}}</legend>
+            <div class="segmented">
+              <label><input type="radio" name="kv" value="g" checked><span>{{t:form.health.statutory}}</span></label>
+              <label><input type="radio" name="kv" value="p"><span>{{t:form.health.private}}</span></label>
+            </div>
+          </fieldset>
+          <div id="health-statutory">
+            <div class="field" data-field="additionalRate">
+              <label for="additionalRate">{{t:form.additionalRate.label}}</label>
+              <div class="affix-box"><input id="additionalRate" name="zb" type="text" inputmode="decimal" autocomplete="off" value="{{additionalRateDefault}}" aria-describedby="additionalRate-hint additionalRate-error"><span class="affix" aria-hidden="true">%</span></div>
+              <p class="hint" id="additionalRate-hint">{{t:form.additionalRate.hint}}</p>
+              <p class="error" id="additionalRate-error" hidden></p>
+            </div>
+          </div>
+          <div id="health-private" hidden>
+            <div class="field" data-field="kvPremium">
+              <label for="kvPremium">{{t:form.kvPremium.label}}</label>
+              <div class="affix-box"><input id="kvPremium" name="kvb" type="text" inputmode="decimal" autocomplete="off" aria-describedby="kvPremium-hint kvPremium-error"><span class="affix" aria-hidden="true">€</span></div>
+              <p class="hint" id="kvPremium-hint">{{t:form.kvPremium.hint}}</p>
+              <p class="error" id="kvPremium-error" hidden></p>
+            </div>
+            <div class="field" data-field="pvPremium">
+              <label for="pvPremium">{{t:form.pvPremium.label}}</label>
+              <div class="affix-box"><input id="pvPremium" name="pvb" type="text" inputmode="decimal" autocomplete="off" aria-describedby="pvPremium-error"><span class="affix" aria-hidden="true">€</span></div>
+              <p class="error" id="pvPremium-error" hidden></p>
+            </div>
+            <div class="field">
+              <label class="check"><input type="checkbox" id="employerSubsidy" name="agz" value="1" checked><span>{{t:form.employerSubsidy.label}}</span></label>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="group" id="care-group">
+          <legend>{{t:form.care.legend}}</legend>
+          <fieldset class="field">
+            <legend>{{t:form.hasChildren.legend}}</legend>
+            <div class="segmented">
+              <label><input type="radio" name="k" value="1"><span>{{t:form.yes}}</span></label>
+              <label><input type="radio" name="k" value="0" checked><span>{{t:form.no}}</span></label>
+            </div>
+          </fieldset>
+          <div class="field" id="children-field" data-field="childrenUnder25" hidden>
+            <label for="childrenUnder25">{{t:form.childrenUnder25.label}}</label>
+            <input id="childrenUnder25" name="ku" type="text" inputmode="numeric" autocomplete="off" value="1" aria-describedby="childrenUnder25-hint childrenUnder25-error">
+            <p class="hint" id="childrenUnder25-hint">{{t:form.childrenUnder25.hint}}</p>
+            <p class="error" id="childrenUnder25-error" hidden></p>
+          </div>
+          <fieldset class="field" id="age-field">
+            <legend>{{t:form.age23.legend}}</legend>
+            <div class="segmented">
+              <label><input type="radio" name="a23" value="1" checked><span>{{t:form.yes}}</span></label>
+              <label><input type="radio" name="a23" value="0"><span>{{t:form.no}}</span></label>
+            </div>
+          </fieldset>
+        </fieldset>
+
+        <details class="more">
+          <summary>{{t:form.more.title}}</summary>
+          <div class="more-body">
+            <div class="field">
+              <label class="check"><input type="checkbox" id="pensionInsured" name="rv" value="1" checked><span>{{t:form.pension.label}}</span></label>
+            </div>
+            <div class="field">
+              <label class="check"><input type="checkbox" id="unemploymentInsured" name="av" value="1" checked><span>{{t:form.unemployment.label}}</span></label>
+            </div>
+            <div class="field" data-field="allowance">
+              <label for="allowance">{{t:form.allowance.label}}</label>
+              <div class="affix-box"><input id="allowance" name="frb" type="text" inputmode="decimal" autocomplete="off" aria-describedby="allowance-hint allowance-error"><span class="affix" aria-hidden="true">€</span></div>
+              <p class="hint" id="allowance-hint">{{t:form.allowance.hint}}</p>
+              <p class="error" id="allowance-error" hidden></p>
+            </div>
+            <div class="field" id="factor-field" data-field="factor" hidden>
+              <label for="factor">{{t:form.factor.label}}</label>
+              <input id="factor" name="f" type="text" inputmode="decimal" autocomplete="off" aria-describedby="factor-hint factor-error">
+              <p class="hint" id="factor-hint">{{t:form.factor.hint}}</p>
+              <p class="error" id="factor-error" hidden></p>
+            </div>
+          </div>
+        </details>
+
+        <div class="actions">
+          <button type="submit" class="btn btn-primary">{{t:form.submit}}</button>
+          <button type="reset" class="btn btn-secondary" id="reset">{{t:form.reset}}</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="card result-card" id="result" aria-labelledby="result-title">
+      <h2 id="result-title" tabindex="-1">{{t:result.title}}</h2>
+      <p id="result-empty" class="muted">{{t:result.empty}}</p>
+      <p id="live" class="visually-hidden" role="status"></p>
+      <div id="result-content" hidden>
+        <p class="employment" id="employment"></p>
+        <dl class="net-figures">
+          <div>
+            <dt>{{t:result.net}} <span>{{t:result.perMonth}}</span></dt>
+            <dd class="net-value" id="net-month"></dd>
+          </div>
+          <div>
+            <dt>{{t:result.net}} <span>{{t:result.perYear}}</span></dt>
+            <dd class="net-value net-value-secondary" id="net-year"></dd>
+          </div>
+        </dl>
+        <div class="bar" id="bar" role="img">
+          <span class="seg seg-net" id="bar-net"></span><span class="seg seg-taxes" id="bar-taxes"></span><span class="seg seg-social" id="bar-social"></span>
+        </div>
+        <ul class="legend" id="legend"></ul>
+        <ul class="notes" id="warnings"></ul>
+        <div class="table-wrap">
+          <table class="results" id="result-table" role="table">
+            <caption>{{t:result.table.caption}}</caption>
+            <thead role="rowgroup">
+              <tr role="row"><th scope="col" role="columnheader">{{t:result.table.item}}</th><th scope="col" role="columnheader" class="num">{{t:result.table.month}}</th><th scope="col" role="columnheader" class="num">{{t:result.table.year}}</th></tr>
+            </thead>
+            <tbody id="result-rows" role="rowgroup"></tbody>
+          </table>
+        </div>
+        <details class="employer" id="employer">
+          <summary>{{t:result.employer.title}}</summary>
+          <div class="table-wrap">
+            <table class="results" role="table">
+              <caption class="visually-hidden">{{t:result.employer.caption}}</caption>
+              <thead role="rowgroup">
+                <tr role="row"><th scope="col" role="columnheader">{{t:result.table.item}}</th><th scope="col" role="columnheader" class="num">{{t:result.table.month}}</th><th scope="col" role="columnheader" class="num">{{t:result.table.year}}</th></tr>
+              </thead>
+              <tbody id="employer-rows" role="rowgroup"></tbody>
+            </table>
+          </div>
+          <p class="hint">{{t:result.employer.note}}</p>
+        </details>
+        <p class="print-row"><button type="button" class="btn btn-secondary" id="print">{{t:result.print}}</button></p>
+      </div>
+    </section>
+  </div>
+
+  <section class="card explain-card" id="explain" aria-labelledby="explain-title" hidden>
+    <h2 id="explain-title">{{t:section.explain.title}}</h2>
+    <p>{{t:section.explain.intro}}</p>
+    <div id="explain-items"></div>
+    <h3 id="sources-title">{{t:section.sources.title}}</h3>
+    <p class="hint">{{t:section.sources.intro}}</p>
+    <ul class="sources" id="sources-list"></ul>
+  </section>
+
+  <section class="card info-card" aria-labelledby="limits-title">
+    <h2 id="limits-title">{{t:section.limits.title}}</h2>
+    <p>{{t:section.limits.intro}}</p>
+    <ul>
+      <li>{{t:section.limits.item1}}</li>
+      <li>{{t:section.limits.item2}}</li>
+      <li>{{t:section.limits.item3}}</li>
+      <li>{{t:section.limits.item4}}</li>
+      <li>{{t:section.limits.item5}}</li>
+    </ul>
+    <p>{{t:section.limits.assumptions}}</p>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p><strong>{{t:footer.status}}</strong></p>
+    <p>{{t:footer.local}}</p>
+    <p>{{t:footer.disclaimer}}</p>
+    <nav aria-label="{{plain:footer.nav}}">
+      <ul class="footer-links">
+        <li><a href="{{legalHref}}">{{t:footer.legal}}</a></li>
+        <li><a href="{{privacyHref}}">{{t:footer.privacyLink}}</a></li>
+        <li><a href="{{privacyHref}}#a11y">{{t:footer.a11y}}</a></li>
+      </ul>
+    </nav>
+  </div>
+</footer>
+{{script}}
+</body>
+</html>

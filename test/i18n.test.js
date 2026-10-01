@@ -76,7 +76,7 @@ test('Alle im Code verwendeten Schlüssel (t(…), tr(…), Engine, Templates) e
   }
   const templates = join(root, 'src/template');
   for (const name of existsSync(templates) ? readdirSync(templates) : []) {
-    for (const m of readFileSync(join(templates, name), 'utf8').matchAll(/\{\{t:([\w.-]+)\}\}/g)) keys.add(m[1]);
+    for (const m of readFileSync(join(templates, name), 'utf8').matchAll(/\{\{(?:t|plain):([\w.-]+)\}\}/g)) keys.add(m[1]);
   }
   assert.ok(keys.size > 40);
   for (const [code, dictionary] of Object.entries(dictionaries)) {
